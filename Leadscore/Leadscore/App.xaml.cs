@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Leadscore.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamvvm;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace Leadscore
@@ -11,7 +12,10 @@ namespace Leadscore
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            var factory = new XamvvmFormsRxUIFactory(this);
+            XamvvmCore.SetCurrentFactory(factory);
+
+            MainPage = this.GetPageFromCache<LoginPageViewModel>() as Page;
         }
 
         protected override void OnStart()

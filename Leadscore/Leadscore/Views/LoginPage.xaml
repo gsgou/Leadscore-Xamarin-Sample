@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Leadscore"
+             x:Class="Leadscore.Views.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="entryStyle"
+                   TargetType="Entry">
+              <Setter Property="Margin"
+                      Value="16,8,16,0" />
+            </Style>
+            
+            <Style x:Key="buttonStyle"
+                   TargetType="Button">
+              <Setter Property="Margin"
+                      Value="16,8,16,0" />
+              <Setter Property="FontSize"
+                      Value="Medium" />
+            </Style>
+                                                
+            <Style x:Key="errorLabelStyle"
+                   TargetType="Label">
+              <Setter Property="Margin"
+                      Value="16,0,16,8" />  
+              <Setter Property="HorizontalOptions"
+                      Value="Center" />
+              <Setter Property="HorizontalTextAlignment"
+                      Value="Center" />
+              <Setter Property="FontSize" 
+                      Value="Medium" />
+              <Setter Property="TextColor" 
+                      Value="#FF1744" />
+            </Style>
+            
+            <Style x:Key="borderStyle"
+                   TargetType="ContentView">
+              <Setter Property="VerticalOptions"
+                      Value="EndAndExpand" />
+              <Setter Property="Padding"
+                      Value="0,2,0,0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <StackLayout Orientation="Vertical" 
+                     VerticalOptions="FillAndExpand"
+                     Spacing="0,0,0,0">
+                                
+            <Entry Style="{StaticResource entryStyle}"
+                   Placeholder="Email"
+                   Text="{Binding Email, Mode=OneWayToSource}"
+                   IsTextPredictionEnabled="true"
+                   Keyboard="Email" />
+                               
+            <Entry Style="{StaticResource entryStyle}"
+                   Placeholder="Password"
+                   Text="{Binding Password, Mode=OneWayToSource}"
+                   IsPassword="true"
+                   IsTextPredictionEnabled="false" />
+                                                   
+            <Button Style="{StaticResource buttonStyle}"
+                    Text="Login"
+                    Command="{Binding LoginCommand}" />
+                 
+            <Label Style="{StaticResource errorLabelStyle}"
+                   IsVisible="false"
+                   Text="{Binding ErrorMessage, Mode=OneWay}" />
+                   
+            <ContentView Style="{StaticResource borderStyle}"
+                         IsVisible="false">
+                <Label XAlign="Center"
+                       YAlign="Center"
+                       VerticalOptions="EndAndExpand"
+                       FontSize="Medium"
+                       Text="FORGOT PASSWORD?">
+                    <Label.HeightRequest>
+                        <OnIdiom x:TypeArguments="x:Double" Phone="56" Tablet="64" />
+                    </Label.HeightRequest>
+                </Label>
+            </ContentView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

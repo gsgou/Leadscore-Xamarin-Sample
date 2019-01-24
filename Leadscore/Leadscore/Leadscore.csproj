@@ -22,5 +22,8 @@
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.1" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Folder Include="Views\" />
     <Folder Include="VieModels\" />
+  </ItemGroup>
 </Project>

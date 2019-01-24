@@ -15,10 +15,13 @@ namespace Leadscore.ViewModels
     public class LoginPageViewModel : BasePageViewModel
     {
         [Reactive]
-        public string UserName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
         [Reactive]
         public string Password { get; set; } = string.Empty;
+
+        [Reactive]
+        public string ErrorMessage { get; set; } = "Please try again";
 
         [ObservableAsProperty]
         public bool CanLogin { get; private set; }
@@ -30,13 +33,13 @@ namespace Leadscore.ViewModels
         {
             var canLoginObservable = this
                 .WhenAnyValue(
-                    x => x.UserName,
+                    x => x.Email,
                     x => x.Password,
-                    (UserName, Password) =>
-                        // Validate our UserName
+                    (Email, Password) =>
+                        // Validate our Email
                         (
-                            !string.IsNullOrEmpty(UserName) &&
-                            Regex.Matches(UserName, "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$").Count == 1
+                            !string.IsNullOrEmpty(Email) &&
+                            Regex.Matches(Email, "^\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$").Count == 1
                         )
                         &&
                         // Validate our Password
@@ -47,7 +50,7 @@ namespace Leadscore.ViewModels
                         ));
 
             canLoginObservable
-                .Do(_ => Debug.WriteLine(string.Format("{0},{1},{2}", UserName, Password, CanLogin.ToString())))
+                .Do(_ => Debug.WriteLine(string.Format("{0},{1},{2}", Email, Password, CanLogin.ToString())))
                 .ToPropertyEx(this, x => x.CanLogin);
 
             this.loginCommand = ReactiveCommand.CreateFromObservable(
