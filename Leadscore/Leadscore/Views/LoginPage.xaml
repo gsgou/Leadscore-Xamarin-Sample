@@ -9,6 +9,10 @@
                    TargetType="Entry">
               <Setter Property="Margin"
                       Value="16,8,16,0" />
+              <Setter Property="BackgroundColor"
+                      Value="{x:Static extensions:ColorExtensions.BackgroundColorLight}" />
+              <Setter Property="TextColor"
+                      Value="{x:Static extensions:ColorExtensions.TextColorDarkPrimary}" />  
             </Style>
             
             <Style x:Key="buttonStyle"
@@ -17,6 +21,12 @@
                       Value="16,8,16,0" />
               <Setter Property="FontSize"
                       Value="Medium" />
+              <Setter Property="BorderColor"
+                      Value="{x:Static extensions:ColorExtensions.BackgroundColorLight}" />
+              <Setter Property="BackgroundColor"
+                      Value="{x:Static extensions:ColorExtensions.LeadscorePrimary}" />
+              <Setter Property="TextColor"
+                      Value="{x:Static extensions:ColorExtensions.TextColorLightPrimary}" /> 
             </Style>
                                                 
             <Style x:Key="errorLabelStyle"
@@ -29,12 +39,14 @@
                       Value="Center" />
               <Setter Property="FontSize" 
                       Value="Medium" />
-              <Setter Property="TextColor" 
-                      Value="#FF1744" />
+              <Setter Property="TextColor"
+                      Value="{x:Static extensions:ColorExtensions.TextColorError}" />
             </Style>
             
             <Style x:Key="borderStyle"
                    TargetType="ContentView">
+              <Setter Property="BackgroundColor"
+                      Value="{x:Static extensions:ColorExtensions.TextColorDarkDividers}" />  
               <Setter Property="VerticalOptions"
                       Value="EndAndExpand" />
               <Setter Property="Padding"
@@ -44,7 +56,8 @@
     </ContentPage.Resources>
     
     <ScrollView>
-        <StackLayout Orientation="Vertical" 
+        <StackLayout BackgroundColor="{x:Static extensions:ColorExtensions.BackgroundColorLight}"
+                     Orientation="Vertical" 
                      VerticalOptions="FillAndExpand"
                      Spacing="0,0,0,0">
             
@@ -69,7 +82,7 @@
                    IsTextPredictionEnabled="false" />
                                                    
             <Button Style="{StaticResource buttonStyle}"
-                    Text="Login"
+                    Text="LOGIN"
                     Command="{Binding LoginCommand}" />
                  
             <Label Style="{StaticResource errorLabelStyle}"
