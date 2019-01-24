@@ -25,5 +25,11 @@
   <ItemGroup>
     <Folder Include="Views\" />
     <Folder Include="VieModels\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\logo_with_brand_name.png" />    
+    <EmbeddedResource Include="Resources\logo_with_brand_name.png" />
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Leadscore"
+             xmlns:extensions="clr-namespace:Leadscore.Extensions"
              x:Class="Leadscore.Views.LoginPage">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -47,6 +47,14 @@
         <StackLayout Orientation="Vertical" 
                      VerticalOptions="FillAndExpand"
                      Spacing="0,0,0,0">
+            
+            <Image Source="{extensions:ImageEmbeddedResource Leadscore.Resources.logo_with_brand_name.png}">
+                <Image.Margin>
+                    <OnIdiom x:TypeArguments="Thickness"
+                             Phone="16,56,16,56"
+                             Tablet="16,64,16,64"/>
+                </Image.Margin>
+            </Image>
                                 
             <Entry Style="{StaticResource entryStyle}"
                    Placeholder="Email"
