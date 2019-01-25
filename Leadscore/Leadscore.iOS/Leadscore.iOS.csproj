@@ -99,6 +99,7 @@
     <Compile Include="Effects\ClearEntryEffect.cs" />
     <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Effects\ShowHidePassEffect.cs" />
+    <Compile Include="Effects\EntryMoveNextEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

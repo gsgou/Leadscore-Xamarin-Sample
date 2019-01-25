@@ -28,7 +28,7 @@ namespace Leadscore.Controls
             };
         }
 
-        void OnNext()
+        public void OnNext()
         {
             NextEntry?.Focus();
         }

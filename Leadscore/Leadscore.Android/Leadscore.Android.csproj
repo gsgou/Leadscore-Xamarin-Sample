@@ -72,6 +72,7 @@
     <Compile Include="Helpers\ApiSafe.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Effects\ShowHidePassEffect.cs" />
+    <Compile Include="Effects\EntryMoveNextEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

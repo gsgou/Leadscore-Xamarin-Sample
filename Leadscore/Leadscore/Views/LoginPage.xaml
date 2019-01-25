@@ -78,6 +78,7 @@
                 Placeholder="Email"
                 Text="{Binding Email, Mode=OneWayToSource}">
                 <controls:EntryMoveNextControl.Effects>
+                    <effects:EntryMoveNextEffect/>
                     <effects:ClearEntryEffect/>
                 </controls:EntryMoveNextControl.Effects>
             </controls:EntryMoveNextControl>
