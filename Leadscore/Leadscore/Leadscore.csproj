@@ -29,6 +29,7 @@
     <Folder Include="Extensions\" />
     <Folder Include="Resources\" />
     <Folder Include="Controls\" />
+    <Folder Include="Effects\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\logo_with_brand_name.png" />    

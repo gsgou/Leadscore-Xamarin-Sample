@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:Leadscore.Controls"
+             xmlns:effects="clr-namespace:Leadscore.Effects"
              xmlns:extensions="clr-namespace:Leadscore.Extensions"
              x:Class="Leadscore.Views.LoginPage">
     <ContentPage.Resources>
@@ -75,7 +76,11 @@
                 IsTextPredictionEnabled="true"
                 Keyboard="Email"
                 Placeholder="Email"
-                Text="{Binding Email, Mode=OneWayToSource}" />
+                Text="{Binding Email, Mode=OneWayToSource}">
+                <controls:EntryMoveNextControl.Effects>
+                    <effects:ClearEntryEffect/>
+                </controls:EntryMoveNextControl.Effects>
+            </controls:EntryMoveNextControl>
                                
             <controls:EntryMoveNextControl
                 x:Name="Password"
