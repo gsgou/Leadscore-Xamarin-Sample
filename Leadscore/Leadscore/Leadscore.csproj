@@ -14,6 +14,7 @@
     <PackageReference Include="ReactiveUI.Fody" Version="9.8.19" />
     <PackageReference Include="Xamvvm.Forms.RxUI" Version="1.0.5" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
+    <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
   </ItemGroup>
   <ItemGroup>
     <!-- https://github.com/dotnet/reactive/issues/803 -->
@@ -27,9 +28,11 @@
     <Folder Include="VieModels\" />
     <Folder Include="Extensions\" />
     <Folder Include="Resources\" />
+    <Folder Include="Controls\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\logo_with_brand_name.png" />    
     <EmbeddedResource Include="Resources\logo_with_brand_name.png" />
+    <None Remove="Controls\CustomButton.xml" />
   </ItemGroup>
 </Project>

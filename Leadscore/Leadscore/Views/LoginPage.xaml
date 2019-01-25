@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Leadscore.Controls"
              xmlns:extensions="clr-namespace:Leadscore.Extensions"
              x:Class="Leadscore.Views.LoginPage">
     <ContentPage.Resources>
@@ -23,12 +24,10 @@
                       Value="Medium" />
               <Setter Property="BorderColor"
                       Value="{x:Static extensions:ColorExtensions.BackgroundColorLight}" />
-              <Setter Property="BackgroundColor"
-                      Value="{x:Static extensions:ColorExtensions.LeadscorePrimary}" />
               <Setter Property="TextColor"
-                      Value="{x:Static extensions:ColorExtensions.TextColorLightPrimary}" /> 
+                      Value="{x:Static extensions:ColorExtensions.TextColorLightPrimary}" />  
             </Style>
-                                                
+                                                            
             <Style x:Key="errorLabelStyle"
                    TargetType="Label">
               <Setter Property="Margin"
@@ -81,9 +80,10 @@
                    IsPassword="true"
                    IsTextPredictionEnabled="false" />
                                                    
-            <Button Style="{StaticResource buttonStyle}"
-                    Text="LOGIN"
-                    Command="{Binding LoginCommand}" />
+            <controls:CustomButton Command="{Binding LoginCommand}"
+                                   IsEnabled="{Binding CanLogin}"
+                                   Style="{StaticResource buttonStyle}"
+                                   Text="LOGIN" />
                  
             <Label Style="{StaticResource errorLabelStyle}"
                    IsVisible="false"
