@@ -71,6 +71,7 @@
     <Compile Include="Effects\ClearEntryEffect.cs" />
     <Compile Include="Helpers\ApiSafe.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="Effects\ShowHidePassEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -95,10 +96,20 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_clear.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_visibility_off.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_visibility.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\ic_clear.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_visibility_off.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_visibility.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_clear.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_visibility_off.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_visibility.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_clear.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_visibility_off.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_visibility.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_clear.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_visibility_off.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_visibility.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

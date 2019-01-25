@@ -86,9 +86,12 @@
                 x:Name="Password"
                 Style="{StaticResource entryStyle}"
                 IsTextPredictionEnabled="false"
-                IsPassword="true"
                 Placeholder="Password"
-                Text="{Binding Password, Mode=OneWayToSource}" />
+                Text="{Binding Password, Mode=OneWayToSource}">
+                <controls:EntryMoveNextControl.Effects>
+                    <effects:ShowHidePassEffect/>
+                </controls:EntryMoveNextControl.Effects>
+            </controls:EntryMoveNextControl>
                                                    
             <controls:CustomButton
                 Command="{Binding LoginCommand}"
