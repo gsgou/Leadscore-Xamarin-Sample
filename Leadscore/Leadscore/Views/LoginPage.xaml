@@ -64,26 +64,32 @@
                 <Image.Margin>
                     <OnIdiom x:TypeArguments="Thickness"
                              Phone="16,56,16,56"
-                             Tablet="16,64,16,64"/>
+                             Tablet="16,64,16,64" />
                 </Image.Margin>
             </Image>
                                 
-            <Entry Style="{StaticResource entryStyle}"
-                   Placeholder="Email"
-                   Text="{Binding Email, Mode=OneWayToSource}"
-                   IsTextPredictionEnabled="true"
-                   Keyboard="Email" />
+            <controls:EntryMoveNextControl
+                x:Name="Email"
+                NextEntry="{x:Reference Name=Password}"
+                Style="{StaticResource entryStyle}"
+                IsTextPredictionEnabled="true"
+                Keyboard="Email"
+                Placeholder="Email"
+                Text="{Binding Email, Mode=OneWayToSource}" />
                                
-            <Entry Style="{StaticResource entryStyle}"
-                   Placeholder="Password"
-                   Text="{Binding Password, Mode=OneWayToSource}"
-                   IsPassword="true"
-                   IsTextPredictionEnabled="false" />
+            <controls:EntryMoveNextControl
+                x:Name="Password"
+                Style="{StaticResource entryStyle}"
+                IsTextPredictionEnabled="false"
+                IsPassword="true"
+                Placeholder="Password"
+                Text="{Binding Password, Mode=OneWayToSource}" />
                                                    
-            <controls:CustomButton Command="{Binding LoginCommand}"
-                                   IsEnabled="{Binding CanLogin}"
-                                   Style="{StaticResource buttonStyle}"
-                                   Text="LOGIN" />
+            <controls:CustomButton
+                Command="{Binding LoginCommand}"
+                IsEnabled="{Binding CanLogin}"
+                Style="{StaticResource buttonStyle}"
+                Text="LOGIN" />
                  
             <Label Style="{StaticResource errorLabelStyle}"
                    IsVisible="false"
