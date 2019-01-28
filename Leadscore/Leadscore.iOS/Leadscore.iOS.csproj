@@ -166,7 +166,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1029999" />
-    <PackageReference Include="ReactiveUI" Version="9.8.22" />    
+    <PackageReference Include="ReactiveUI" Version="9.8.23" />    
     <PackageReference Include="akavache" Version="6.3.1" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
