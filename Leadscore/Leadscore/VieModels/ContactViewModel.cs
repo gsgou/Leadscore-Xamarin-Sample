@@ -31,9 +31,9 @@ namespace Leadscore.ViewModels
 
                 DisplayName = string.Format("{0} {1} {2}", result.FirstName, result.MiddleName, result.LastName);
 
-                Email = result.Emails
-                              .FirstOrDefault(em => em.Primary == true)
-                              .EmailEmail;
+                Email = result?.Emails
+                              ?.FirstOrDefault(em => em.Primary == true)
+                              ?.EmailEmail;
 
                 Birthday = result.Birthday;
             }

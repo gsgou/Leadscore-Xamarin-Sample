@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:Leadscore.Extensions"
+             x:Class="Leadscore.Views.ContactsPage"
+             NavigationPage.HasBackButton="False"
+             Title="Contacts">
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}" />
+  </ContentPage.ToolbarItems>  
+
+  <ContentPage.Content>
+      <ListView ItemsSource="{Binding Contacts}"
+                CachingStrategy="RecycleElement"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding LogoutCommand}"
+                IsRefreshing="{Binding IsRefreshing}" 
+                HasUnevenRows="false"
+                RowHeight="80"
+                MinimumHeightRequest="80">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout Orientation="Horizontal"
+                             VerticalOptions="Center"
+                             MinimumHeightRequest="80"
+                             Padding="8"
+                             Spacing="7">
+                  <!--           
+                  <Image Source="{Binding Thumbnail}"
+                         WidthRequest="64"
+                         HeightRequest="64"/>
+                  !-->       
+                  <StackLayout Orientation="Vertical"
+                               VerticalOptions="Center"
+                               Padding="0,-2,0,0" >
+                    <Label Text="{Binding DisplayName}"
+                           HorizontalOptions="StartAndExpand"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start"
+                           Font="Large"/>
+                        
+                    <Label Text="{Binding Email}" 
+                           HorizontalOptions="Start"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start"
+                           Font="Medium"
+                           TextColor="{x:Static extensions:ColorExtensions.TextColorDarkPrimary}" />
+                  </StackLayout>
+                  <Label Text="{Binding Birthday}" 
+                         HorizontalOptions="EndAndExpand"
+                         VerticalOptions="Center"
+                         VerticalTextAlignment="Center"
+                         Font="Small"
+                         TextColor="{x:Static extensions:ColorExtensions.LeadscorePrimary}" />
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+  </ContentPage.Content>
+</ContentPage>

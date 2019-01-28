@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Xamvvm;
 
 using Leadscore.Models;
 using Leadscore.Services;
@@ -78,9 +79,25 @@ namespace Leadscore.ViewModels
                 Client = "LeadscoreApp"
             };
             var authToken = await _authenticationService.Login(loginRequest);
-
             await _cacheService.InsertObject("AuthToken", authToken);
-            //var token = await _cacheService.GetObject<string>("AuthToken");
+
+            if (authToken != null)
+            {
+                await NavToContacts();
+            }
+        }
+
+        async Task<bool> NavToContacts()
+        {
+            try
+            {
+                return await this.PushPageAsNewInstanceAsync<ContactsPageViewModel>();
+            }
+            catch (Exception ex)
+            {
+                await Observable.Throw<Unit>(ex);
+                return false;
+            }
         }
     }
 }
