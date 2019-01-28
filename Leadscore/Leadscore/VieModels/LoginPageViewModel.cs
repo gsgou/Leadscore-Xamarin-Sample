@@ -4,16 +4,21 @@ using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
+using Leadscore.Models;
+using Leadscore.Services;
+
 namespace Leadscore.ViewModels
 {
     public class LoginPageViewModel : BasePageViewModel
     {
+        AuthenticationService _authenticationService = new AuthenticationService();
+        CacheService _cacheService = new CacheService();
+
         [Reactive]
         public string Email { get; set; } = string.Empty;
 
@@ -26,8 +31,8 @@ namespace Leadscore.ViewModels
         [ObservableAsProperty]
         public bool CanLogin { get; private set; }
 
-        readonly ReactiveCommand<Unit, bool?> loginCommand;
-        public ReactiveCommand<Unit, bool?> LoginCommand => this.loginCommand;
+        readonly ReactiveCommand<Unit, Unit> loginCommand;
+        public ReactiveCommand<Unit, Unit> LoginCommand => this.loginCommand;
 
         public LoginPageViewModel()
         {
@@ -64,12 +69,18 @@ namespace Leadscore.ViewModels
                 .DisposeWith(this.DeactivateWith);
         }
 
-        async Task<bool?> LoginAsync(CancellationToken ct)
+        async Task LoginAsync()
         {
-            var result = this.Password == "4Validation$";
-            await Task.Delay(TimeSpan.FromSeconds(3), ct);
+            var loginRequest = new LoginRequest()
+            {
+                Username = Email,
+                Password = Password,
+                Client = "LeadscoreApp"
+            };
+            var authToken = await _authenticationService.Login(loginRequest);
 
-            return result;
+            await _cacheService.InsertObject("AuthToken", authToken);
+            //var token = await _cacheService.GetObject<string>("AuthToken");
         }
     }
 }
