@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Leadscore.Models
 {
-    public partial class User
+    public class User
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
@@ -16,7 +15,7 @@ namespace Leadscore.Models
         public string AccountStatus { get; set; }
 
         [JsonProperty("expirationDate", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTimeOffset? ExpirationDate { get; set; }
+        public long? ExpirationDate { get; set; }
 
         [JsonProperty("email", NullValueHandling = NullValueHandling.Ignore)]
         public string Email { get; set; }
@@ -43,10 +42,10 @@ namespace Leadscore.Models
         public string SignupClient { get; set; }
 
         [JsonProperty("dateCreated", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTimeOffset? DateCreated { get; set; }
+        public long? DateCreated { get; set; }
 
         [JsonProperty("lastLoginDate", NullValueHandling = NullValueHandling.Ignore)]
-        public DateTimeOffset? LastLoginDate { get; set; }
+        public long? LastLoginDate { get; set; }
 
         [JsonProperty("active", NullValueHandling = NullValueHandling.Ignore)]
         public bool? Active { get; set; }

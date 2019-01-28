@@ -1,6 +1,6 @@
 ﻿namespace Leadscore.Models
 {
-    public partial class Integrations
+    public class Integrations
     {
 
     }

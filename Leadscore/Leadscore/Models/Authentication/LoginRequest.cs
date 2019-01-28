@@ -2,7 +2,7 @@
 
 namespace Leadscore.Models
 {
-    public partial class LoginRequest
+    public class LoginRequest
     {
         [JsonProperty("username", NullValueHandling = NullValueHandling.Ignore)]
         public string Username { get; set; }

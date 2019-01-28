@@ -2,7 +2,7 @@
 
 namespace Leadscore.Models
 {
-    public partial class LoginResult
+    public class LoginResult
     {
         [JsonProperty("user", NullValueHandling = NullValueHandling.Ignore)]
         public User User { get; set; }
@@ -15,7 +15,5 @@ namespace Leadscore.Models
 
         [JsonProperty("token", NullValueHandling = NullValueHandling.Ignore)]
         public Token Token { get; set; }
-
-        public static LoginResult FromJson(string json) => JsonConvert.DeserializeObject<LoginResult>(json, Converter.Settings);
     }
 }
