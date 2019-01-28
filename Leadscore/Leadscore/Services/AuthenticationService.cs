@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+using Leadscore.Helpers;
 using Leadscore.Interfaces;
 using Leadscore.Models;
 using Refit;
@@ -30,19 +30,21 @@ namespace Leadscore.Services
 
         public async Task<string> Login(LoginRequest request)
         {
-            Debug.WriteLine($"Trying to post data...");
-
-            var loginResult = await _restService.Login(request);
-            var authToken = (loginResult as LoginResult)?.Token?.AuthToken;
-            return authToken;
+            return await Policies.RetryPolicy(async () =>
+            {
+                var loginResult = await _restService.Login(request);
+                var authToken = (loginResult as LoginResult)?.Token?.AuthToken;
+                return authToken;
+            });
         }
 
         public async Task<bool> Logout(LogoutRequest request)
         {
-            Debug.WriteLine($"Trying to post data...");
-
-            var apiResponse = await _restService.Logout(request);
-            return apiResponse?.IsSuccessStatusCode ?? false;
+            return await Policies.RetryPolicy(async () =>
+            {
+                var apiResponse = await _restService.Logout(request);
+                return apiResponse?.IsSuccessStatusCode ?? false;
+            });
         }
     }
 }
