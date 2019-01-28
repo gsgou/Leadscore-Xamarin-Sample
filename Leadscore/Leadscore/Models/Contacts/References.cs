@@ -1,6 +1,6 @@
 ﻿namespace Leadscore.Models
 {
-    public class ContactReferences
+    public class References
     {
 
     }

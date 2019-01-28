@@ -5,7 +5,7 @@ namespace Leadscore.Models
     public class CustomField
     {
         [JsonProperty("value", NullValueHandling = NullValueHandling.Ignore)]
-        public ContactReferences Value { get; set; }
+        public References Value { get; set; }
 
         [JsonProperty("name", NullValueHandling = NullValueHandling.Ignore)]
         public string Name { get; set; }
@@ -17,7 +17,7 @@ namespace Leadscore.Models
         public string Type { get; set; }
 
         [JsonProperty("references", NullValueHandling = NullValueHandling.Ignore)]
-        public ContactReferences References { get; set; }
+        public References References { get; set; }
 
         [JsonProperty("readOnly", NullValueHandling = NullValueHandling.Ignore)]
         public bool? ReadOnly { get; set; }

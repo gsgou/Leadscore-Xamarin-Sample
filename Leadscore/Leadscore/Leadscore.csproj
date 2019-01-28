@@ -38,7 +38,7 @@
     <Folder Include="Models\Authentication\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
-    <Folder Include="Models\ContactLists\" />
+    <Folder Include="Models\Contacts\" />
     <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>

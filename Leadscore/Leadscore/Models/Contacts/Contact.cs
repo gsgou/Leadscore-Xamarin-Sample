@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Leadscore.Models
 {
-    public class ContactsResultContact
+    public class Contact
     {
         [JsonProperty("sharing", NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<Sharing> Sharing { get; set; }
@@ -105,7 +105,7 @@ namespace Leadscore.Models
         public string DisplayName { get; set; }
 
         [JsonProperty("relatedTo", NullValueHandling = NullValueHandling.Ignore)]
-        public IEnumerable<RelatedToElement> RelatedTo { get; set; }
+        public IEnumerable<RelatedTo> RelatedTo { get; set; }
 
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }

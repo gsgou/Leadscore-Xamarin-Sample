@@ -9,7 +9,7 @@ namespace Leadscore.Models
         public string Id { get; set; }
 
         [JsonProperty("metadata", NullValueHandling = NullValueHandling.Ignore)]
-        public ContactReferences Metadata { get; set; }
+        public References Metadata { get; set; }
 
         [JsonProperty("created", NullValueHandling = NullValueHandling.Ignore)]
         public long? Created { get; set; }
@@ -21,10 +21,10 @@ namespace Leadscore.Models
         public string Direction { get; set; }
 
         [JsonProperty("contacts", NullValueHandling = NullValueHandling.Ignore)]
-        public IEnumerable<RelatedToElement> Contacts { get; set; }
+        public IEnumerable<RelatedTo> Contacts { get; set; }
 
         [JsonProperty("contactReferences", NullValueHandling = NullValueHandling.Ignore)]
-        public ContactReferences ContactReferences { get; set; }
+        public References ContactReferences { get; set; }
 
         [JsonProperty("userId", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
@@ -72,6 +72,6 @@ namespace Leadscore.Models
         public IEnumerable<Sharing> VisibleTo { get; set; }
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public ContactReferences Status { get; set; }
+        public References Status { get; set; }
     }
 }

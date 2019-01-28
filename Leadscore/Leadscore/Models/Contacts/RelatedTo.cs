@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Leadscore.Models
 {
-    public class RelatedToElement
+    public class RelatedTo
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }

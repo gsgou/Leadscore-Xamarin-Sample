@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace Leadscore.Models
 {
-    public class ContactsResult
+    public class ContactsList
     {
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public long? Id { get; set; }
@@ -39,7 +39,7 @@ namespace Leadscore.Models
         public IEnumerable<string> InactiveStatuses { get; set; }
 
         [JsonProperty("contacts", NullValueHandling = NullValueHandling.Ignore)]
-        public IEnumerable<ContactsResultContact> Contacts { get; set; }
+        public IEnumerable<Contact> Contacts { get; set; }
 
         [JsonProperty("lastInteraction", NullValueHandling = NullValueHandling.Ignore)]
         public LastInteraction LastInteraction { get; set; }
