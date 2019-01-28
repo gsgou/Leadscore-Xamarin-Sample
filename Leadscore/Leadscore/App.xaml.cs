@@ -15,7 +15,7 @@ namespace Leadscore
             var factory = new XamvvmFormsRxUIFactory(this);
             XamvvmCore.SetCurrentFactory(factory);
 
-            MainPage = this.GetPageFromCache<LoginPageViewModel>() as Page;
+            MainPage = new NavigationPage(this.GetPageFromCache<LoginPageViewModel>() as Page);
         }
 
         protected override void OnStart()
