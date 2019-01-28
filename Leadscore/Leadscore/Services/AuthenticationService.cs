@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace Leadscore.Services
             _restService = RestService.For<IAuthentication>(_httpClient);
         }
 
-        public async Task<string> Login(LoginRequest request)
+        public async Task<string> Login(Dictionary<string, object> request)
         {
             return await Policies.RetryPolicy(async () =>
             {
@@ -38,7 +39,7 @@ namespace Leadscore.Services
             });
         }
 
-        public async Task<bool> Logout(LogoutRequest request)
+        public async Task<bool> Logout(Dictionary<string, object> request)
         {
             return await Policies.RetryPolicy(async () =>
             {

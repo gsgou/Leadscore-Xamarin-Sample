@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reactive;
 using System.Reactive.Disposables;
@@ -10,7 +11,6 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Xamvvm;
 
-using Leadscore.Models;
 using Leadscore.Services;
 
 namespace Leadscore.ViewModels
@@ -72,15 +72,13 @@ namespace Leadscore.ViewModels
 
         async Task LoginAsync()
         {
-            var loginRequest = new LoginRequest()
-            {
-                Username = Email,
-                Password = Password,
-                Client = "LeadscoreApp"
+            var loginRequest = new Dictionary<string, object> {
+                { "username", Email },
+                { "password", Password },
+                { "client", "LeadscoreApp" }
             };
             var authToken = await _authenticationService.Login(loginRequest);
             await _cacheService.InsertObject("AuthToken", authToken);
-
             if (authToken != null)
             {
                 await NavToContacts();

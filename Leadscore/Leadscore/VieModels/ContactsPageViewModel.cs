@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -48,9 +49,8 @@ namespace Leadscore.ViewModels
             string authToken = await _cacheService.GetObject<string>("AuthToken");
             if (authToken != null)
             {
-                var logoutRequest = new LogoutRequest()
-                {
-                    AuthToken = authToken
+                var logoutRequest = new Dictionary<string, object> {
+                    { "authToken", authToken }
                 };
                 bool hasLogout = await _authenticationService.Logout(logoutRequest);
                 if (hasLogout)
