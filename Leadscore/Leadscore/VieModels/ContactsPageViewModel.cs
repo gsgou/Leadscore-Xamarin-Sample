@@ -10,7 +10,6 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Xamvvm;
 
-using Leadscore.Models;
 using Leadscore.Services;
 
 namespace Leadscore.ViewModels

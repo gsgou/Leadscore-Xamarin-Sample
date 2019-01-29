@@ -31,9 +31,14 @@ namespace Leadscore.Services
 
         public async Task<string> Login(Dictionary<string, object> request)
         {
-            return await Policies.RetryPolicy(async () =>
+            return await ApiHelpers.RetryPolicy(async () =>
             {
-                var loginResult = await _restService.Login(request);
+                LoginResult loginResult = null;
+                await ApiHelpers.RunSafe(async () =>
+                {
+                    loginResult = await _restService.Login(request);
+                });
+
                 var authToken = (loginResult as LoginResult)?.Token?.AuthToken;
                 return authToken;
             });
@@ -41,9 +46,13 @@ namespace Leadscore.Services
 
         public async Task<bool> Logout(Dictionary<string, object> request)
         {
-            return await Policies.RetryPolicy(async () =>
+            return await ApiHelpers.RetryPolicy(async () =>
             {
-                var apiResponse = await _restService.Logout(request);
+                ApiResponse<HttpContent> apiResponse = null;
+                await ApiHelpers.RunSafe(async () =>
+                {
+                    apiResponse = await _restService.Logout(request);
+                });
                 return apiResponse?.IsSuccessStatusCode ?? false;
             });
         }
