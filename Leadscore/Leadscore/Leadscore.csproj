@@ -40,6 +40,7 @@
     <Folder Include="Services\" />
     <Folder Include="Models\Contacts\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\logo_with_brand_name.png" />    

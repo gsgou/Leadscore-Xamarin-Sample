@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Leadscore.Converters"
              xmlns:extensions="clr-namespace:Leadscore.Extensions"
              x:Class="Leadscore.Views.ContactsPage"
              NavigationPage.HasBackButton="False"
              Title="Contacts">
+    
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <converters:EmptyStringConverter x:Key="strConverter"/>
+    </ResourceDictionary>
+  </ContentPage.Resources>
+    
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="Logout" Command="{Binding LogoutCommand}" />
   </ContentPage.ToolbarItems>  
@@ -35,20 +43,20 @@
                   <StackLayout Orientation="Vertical"
                                VerticalOptions="Center"
                                Padding="0,-2,0,0" >
-                    <Label Text="{Binding DisplayName}"
+                    <Label Text="{Binding DisplayName, Converter={StaticResource strConverter}}"
                            HorizontalOptions="StartAndExpand"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Start"
                            Font="Large"/>
                         
-                    <Label Text="{Binding Email}" 
+                    <Label Text="{Binding PhoneNumber, Converter={StaticResource strConverter}}" 
                            HorizontalOptions="Start"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Start"
                            Font="Medium"
                            TextColor="{x:Static extensions:ColorExtensions.TextColorDarkPrimary}" />
                   </StackLayout>
-                  <Label Text="{Binding Birthday}" 
+                  <Label Text="{Binding Birthday, Converter={StaticResource strConverter}}" 
                          HorizontalOptions="EndAndExpand"
                          VerticalOptions="Center"
                          VerticalTextAlignment="Center"
