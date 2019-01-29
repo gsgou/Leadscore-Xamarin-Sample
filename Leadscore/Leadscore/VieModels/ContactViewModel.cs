@@ -10,7 +10,11 @@ namespace Leadscore.ViewModels
 {
     public class ContactViewModel : BasePageViewModel
     {
+        [Reactive] public string Id { get; private set; }
+
         [Reactive] public string DisplayName { get; private set; }
+
+        [Reactive] public string PhoneNumber { get; private set; }
 
         [Reactive] public string Email { get; private set; }
 
@@ -29,13 +33,21 @@ namespace Leadscore.ViewModels
             {
                 response = true;
 
-                DisplayName = string.Format("{0} {1} {2}", result.FirstName, result.MiddleName, result.LastName);
+                Id = result.Id;
 
-                Email = result?.Emails
+                DisplayName = result.DisplayName;
+
+                PhoneNumber = result.PhoneNumbers
+                                    ?.FirstOrDefault(pn => pn.Primary == true)
+                                    ?.Number
+                                    ?? result.PhoneNumbers?.FirstOrDefault()?.Number;
+
+                Email = result.Emails
                               ?.FirstOrDefault(em => em.Primary == true)
-                              ?.EmailEmail;
+                              ?.EmailEmail
+                              ?? string.Empty;
 
-                Birthday = result.Birthday;
+                Birthday = string.Empty; //result.Birthday ?? string.Empty;
             }
             catch (Exception ex)
             {
