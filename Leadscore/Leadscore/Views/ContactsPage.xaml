@@ -13,7 +13,7 @@
       <ListView ItemsSource="{Binding Contacts}"
                 CachingStrategy="RecycleElement"
                 IsPullToRefreshEnabled="True"
-                RefreshCommand="{Binding LogoutCommand}"
+                RefreshCommand="{Binding FindFilteredContactsCommand}"
                 IsRefreshing="{Binding IsRefreshing}" 
                 HasUnevenRows="false"
                 RowHeight="80"

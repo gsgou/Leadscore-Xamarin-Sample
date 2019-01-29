@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -17,31 +18,40 @@ namespace Leadscore.ViewModels
     public class ContactsPageViewModel : BasePageViewModel
     {
         AuthenticationService _authenticationService = new AuthenticationService();
+        ContactsService _contactsService = new ContactsService();
         CacheService _cacheService = new CacheService();
 
-        public ObservableCollection<ContactViewModel> Contacts { get; } = new ObservableCollection<ContactViewModel>();
+        public ObservableRangeCollection<ContactViewModel> Contacts { get; } = new ObservableRangeCollection<ContactViewModel>();
 
         [Reactive] public bool IsRefreshing { get; set; } = false;
 
         readonly ReactiveCommand<Unit, Unit> logoutCommand;
         public ReactiveCommand<Unit, Unit> LogoutCommand => this.logoutCommand;
 
+        readonly ReactiveCommand<Unit, Unit> findFilteredContactsCommand;
+        public ReactiveCommand<Unit, Unit> FindFilteredContactsCommand => this.findFilteredContactsCommand;
+
         public ContactsPageViewModel()
         {
-            var c = new Contact()
-            {
-                FirstName = "Giorgos",
-                LastName = "Sgouridis",
-                Birthday = "16.01.1980"
-            };
-            var cvm = new ContactViewModel();
-            cvm.TrySet(c);
-            Contacts.Add(cvm);
+            //var c = new Contact()
+            //{
+            //    FirstName = "Giorgos",
+            //    LastName = "Sgouridis",
+            //    Birthday = "16.01.1980"
+            //};
+            //var cvm = new ContactViewModel();
+            //cvm.TrySet(c);
+            //Contacts.Add(cvm);
 
             this.logoutCommand = ReactiveCommand.CreateFromObservable(
                 () =>
                     Observable
                         .StartAsync(this.LogoutAsync));
+
+            this.findFilteredContactsCommand = ReactiveCommand.CreateFromObservable(
+                () =>
+                    Observable
+                        .StartAsync(this.FindFilteredContactsAsync));
         }
 
         async Task LogoutAsync()
@@ -58,6 +68,43 @@ namespace Leadscore.ViewModels
                     await NavToLogin();
                 }
             }
+        }
+
+        async Task FindFilteredContactsAsync()
+        {
+            this.IsRefreshing = true;
+
+            string authToken = await _cacheService.GetObject<string>("AuthToken");
+            if (authToken != null)
+            {
+                var contacts = await _contactsService.FindFilteredContact(authToken);
+                if (contacts.Any())
+                {
+                    var list = new List<ContactViewModel>();
+                    foreach (var result in contacts)
+                    {
+                        var contact = this.Contacts
+                                          .FirstOrDefault(x => x.Id.Equals(result.Id));
+
+                        if (contact != null)
+                        {
+                            contact.TrySet(result);
+                        }
+                        else
+                        {
+                            contact = new ContactViewModel();
+                            contact.TrySet(result);
+                            this.Contacts.Add(contact);
+                        }
+                    }
+                    if (list.Any())
+                    {
+                        this.Contacts.AddRange(list);
+                    }
+                }
+            }
+
+            this.IsRefreshing = false;
         }
 
         async Task<bool> NavToLogin()
