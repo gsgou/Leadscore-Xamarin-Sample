@@ -33,16 +33,6 @@ namespace Leadscore.ViewModels
 
         public ContactsPageViewModel()
         {
-            //var c = new Contact()
-            //{
-            //    FirstName = "Giorgos",
-            //    LastName = "Sgouridis",
-            //    Birthday = "16.01.1980"
-            //};
-            //var cvm = new ContactViewModel();
-            //cvm.TrySet(c);
-            //Contacts.Add(cvm);
-
             this.logoutCommand = ReactiveCommand.CreateFromObservable(
                 () =>
                     Observable
@@ -52,6 +42,13 @@ namespace Leadscore.ViewModels
                 () =>
                     Observable
                         .StartAsync(this.FindFilteredContactsAsync));
+        }
+
+        public override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            this.findFilteredContactsCommand.Execute();
         }
 
         async Task LogoutAsync()
