@@ -57,7 +57,8 @@
                            Font="Medium"
                            TextColor="{x:Static extensions:ColorExtensions.TextColorDarkPrimary}" />
                   </StackLayout>
-                  <Label HorizontalOptions="EndAndExpand"
+                  <Label Text="{Binding Birthday}"
+                         HorizontalOptions="EndAndExpand"
                          VerticalOptions="Center"
                          VerticalTextAlignment="Center"
                          Font="Small"

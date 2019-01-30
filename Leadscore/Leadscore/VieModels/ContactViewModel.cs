@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
-
-using ReactiveUI.Fody.Helpers;
 
 using Leadscore.Models;
 
@@ -10,15 +9,15 @@ namespace Leadscore.ViewModels
 {
     public class ContactViewModel : BasePageViewModel
     {
-        [Reactive] public string Id { get; private set; }
+        public string Id { get; private set; }
 
-        [Reactive] public string DisplayName { get; private set; }
+        public string DisplayName { get; private set; }
 
-        [Reactive] public string PhoneNumber { get; private set; }
+        public string PhoneNumber { get; private set; }
 
-        [Reactive] public string Email { get; private set; }
+        //public string Email { get; private set; }
 
-        [Reactive] public string Birthday { get; private set; }
+        public string Birthday { get; private set; }
 
         public bool TrySet(Contact result)
         {
@@ -42,12 +41,15 @@ namespace Leadscore.ViewModels
                                     ?.Number
                                     ?? result.PhoneNumbers?.FirstOrDefault()?.Number;
 
-                Email = result.Emails
-                              ?.FirstOrDefault(em => em.Primary == true)
-                              ?.EmailEmail
-                              ?? string.Empty;
+                //Email = result.Emails
+                //?.FirstOrDefault(em => em.Primary == true)
+                //?.EmailEmail
+                //?? string.Empty;
 
-                Birthday = string.Empty; //result.Birthday ?? string.Empty;
+                DateTime birthday;
+                Birthday = result.Birthday != null && DateTime.TryParse(result.Birthday, out birthday) ?
+                               birthday.ToString("dd.MM", CultureInfo.InvariantCulture) :
+                               string.Empty;
             }
             catch (Exception ex)
             {
