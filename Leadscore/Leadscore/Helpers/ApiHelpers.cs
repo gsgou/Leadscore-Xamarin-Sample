@@ -51,24 +51,29 @@ namespace Leadscore.Helpers
             {
                 // handle validation here by using validationException.Content, 
                 // which is type of ProblemDetails according to RFC 7807
-                string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(ValidationApiException), methodName, ex.Message, ex);
-                Debug.Write(errorMessage);
+                HandleException(methodName, ex);
             }
             catch (ApiException ex)
             {
-                string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(ApiException), methodName, ex.Message, ex);
-                Debug.Write(errorMessage);
+                HandleException(methodName, ex);
             }
             catch (JsonReaderException ex)
             {
-                string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(JsonReaderException), methodName, ex.Message, ex);
-                Debug.Write(errorMessage);
+                HandleException(methodName, ex);
             }
             catch (Exception ex)
             {
-                string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(Exception), methodName, ex.Message, ex);
-                Debug.Write(errorMessage);
+                HandleException(methodName, ex);
             }
+        }
+
+        static void HandleException<TException>(string methodName, TException ex)
+        {
+            string errorMessage = string.Format("{0} in {1}(...): {2}\r\n",
+                ex.GetType().Name,
+                methodName,
+                (ex as Exception).Message);
+            Debug.Write(errorMessage);
         }
     }
 }
