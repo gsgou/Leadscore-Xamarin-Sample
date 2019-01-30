@@ -78,7 +78,7 @@
                 IsTextPredictionEnabled="true"
                 Keyboard="Email"
                 Placeholder="Email"
-                Text="{Binding Email, Mode=OneWayToSource}">
+                Text="{Binding Email, Mode=TwoWay}">
                 <controls:EntryMoveNextControl.Effects>
                     <effects:EntryMoveNextEffect/>
                     <effects:ClearEntryEffect/>

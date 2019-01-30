@@ -17,6 +17,7 @@ namespace Leadscore.ViewModels
 {
     public class LoginPageViewModel : BasePageViewModel
     {
+        static string _client = "LeadscoreApp";
         AuthenticationService _authenticationService = new AuthenticationService();
         CacheService _cacheService = new CacheService();
 
@@ -70,17 +71,25 @@ namespace Leadscore.ViewModels
                 .DisposeWith(this.DeactivateWith);
         }
 
+        public override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Email = await _cacheService.GetObject<string>("Email");
+        }
+
         async Task LoginAsync()
         {
             var loginRequest = new Dictionary<string, object> {
                 { "username", Email },
                 { "password", Password },
-                { "client", "LeadscoreApp" }
+                { "client", _client }
             };
             var authToken = await _authenticationService.Login(loginRequest);
-            await _cacheService.InsertObject("AuthToken", authToken);
             if (authToken != null)
             {
+                await _cacheService.InsertObject("AuthToken", authToken);
+                await _cacheService.InsertObject("Email", Email);
                 await NavToContacts();
             }
         }

@@ -58,8 +58,8 @@ namespace Leadscore.ViewModels
                 var logoutRequest = new Dictionary<string, object> {
                     { "authToken", authToken }
                 };
-                bool hasLogout = await _authenticationService.Logout(logoutRequest);
-                if (hasLogout)
+                bool isLoggedOut = await _authenticationService.Logout(logoutRequest);
+                if (isLoggedOut)
                 {
                     await NavToLogin();
                 }
