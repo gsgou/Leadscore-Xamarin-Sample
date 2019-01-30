@@ -54,6 +54,11 @@ namespace Leadscore.Helpers
                 string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(ValidationApiException), methodName, ex.Message, ex);
                 Debug.Write(errorMessage);
             }
+            catch (ApiException ex)
+            {
+                string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(ApiException), methodName, ex.Message, ex);
+                Debug.Write(errorMessage);
+            }
             catch (JsonReaderException ex)
             {
                 string errorMessage = string.Format("{0} in {1}(...): {2}\r\n{3}", nameof(JsonReaderException), methodName, ex.Message, ex);

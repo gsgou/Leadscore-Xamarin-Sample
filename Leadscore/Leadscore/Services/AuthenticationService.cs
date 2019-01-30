@@ -31,30 +31,31 @@ namespace Leadscore.Services
 
         public async Task<string> Login(Dictionary<string, object> request)
         {
-            return await ApiHelpers.RetryPolicy(async () =>
+            LoginResult loginResult = null;
+            await ApiHelpers.RunSafe(async () =>
             {
-                LoginResult loginResult = null;
-                await ApiHelpers.RunSafe(async () =>
+                loginResult = await ApiHelpers.RetryPolicy(async () =>
                 {
-                    loginResult = await _restService.Login(request);
+                    return await _restService.Login(request);
                 });
-
-                var authToken = (loginResult as LoginResult)?.Token?.AuthToken;
-                return authToken;
             });
+
+            var authToken = (loginResult as LoginResult)?.Token?.AuthToken;
+            return authToken;
         }
 
         public async Task<bool> Logout(Dictionary<string, object> request)
         {
-            return await ApiHelpers.RetryPolicy(async () =>
+            ApiResponse<HttpContent> apiResponse = null;
+            await ApiHelpers.RunSafe(async () =>
             {
-                ApiResponse<HttpContent> apiResponse = null;
-                await ApiHelpers.RunSafe(async () =>
+                apiResponse = await ApiHelpers.RetryPolicy(async () =>
                 {
-                    apiResponse = await _restService.Logout(request);
+                    return await _restService.Logout(request);
                 });
-                return apiResponse?.IsSuccessStatusCode ?? false;
             });
+
+            return apiResponse?.IsSuccessStatusCode ?? false;
         }
     }
 }

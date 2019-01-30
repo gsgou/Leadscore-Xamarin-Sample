@@ -32,26 +32,27 @@ namespace Leadscore.Services
 
         public async Task<IEnumerable<Contact>> FindFilteredContact(string authToken)
         {
-            return await ApiHelpers.RetryPolicy(async () =>
-            {
-                var filters = new Filter[] {
+            var filters = new Filter[] {
                     new Filter { Field = "contactType", Op = "eq", Value = "COMPANY" },
                     new Filter { Field = "contactType", Op = "eq", Value = "PERSON" }
                 }.AsEnumerable();
 
-                var request = new FindFilteredContactsRequest()
-                {
-                    DefaultOperator = "OR",
-                    Filters = filters
-                };
+            var request = new FindFilteredContactsRequest()
+            {
+                DefaultOperator = "OR",
+                Filters = filters
+            };
 
-                var result = Enumerable.Empty<Contact>();
-                await ApiHelpers.RunSafe(async () =>
+            var result = Enumerable.Empty<Contact>();
+            await ApiHelpers.RunSafe(async () =>
+            {
+                result = await ApiHelpers.RetryPolicy(async () =>
                 {
-                    result = (await _restService.FindFilteredContacts(request, authToken))?.Data;
+                    var filteredContacts = await _restService.FindFilteredContacts(request, authToken);
+                    return filteredContacts?.Data;
                 });
-                return result;
             });
+            return result;
         }
     }
 }
