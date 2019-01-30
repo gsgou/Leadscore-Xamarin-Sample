@@ -12,6 +12,9 @@ namespace Leadscore.Helpers
 {
     public static class ApiHelpers
     {
+        // Exponential back-off plus some jitter.
+        // To overcome peaks of similar retries coming from many clients in case of partial outages,
+        // a good workaround is to add a jitter strategy to the retry algorithm/policy.
         public static async Task<TResult> RetryPolicy<TResult>(Func<Task<TResult>> action)
         {
             Random jitterer = new Random();
@@ -23,9 +26,6 @@ namespace Leadscore.Helpers
             .WaitAndRetryAsync
             (
                 retryCount: 3,
-                // Exponential back-off plus some jitter
-                // To overcome peaks of similar retries coming from many clients in case of partial outages,
-                // a good workaround is to add a jitter strategy to the retry algorithm/policy.
                 sleepDurationProvider: retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))
                                                      + TimeSpan.FromMilliseconds(jitterer.Next(0, 100)),
                 onRetry: (ex, time) =>
@@ -49,7 +49,7 @@ namespace Leadscore.Helpers
             }
             catch (ValidationApiException ex)
             {
-                // handle validation here by using validationException.Content, 
+                // Handle validation here by using ValidationException.Content, 
                 // which is type of ProblemDetails according to RFC 7807
                 HandleException(methodName, ex);
             }
@@ -69,7 +69,7 @@ namespace Leadscore.Helpers
 
         static void HandleException<TException>(string methodName, TException ex)
         {
-            string errorMessage = string.Format("{0} in {1}(...): {2}\r\n",
+            string errorMessage = string.Format("{0} in {1}():\r\n{2}\r\n",
                 ex.GetType().Name,
                 methodName,
                 (ex as Exception).Message);
