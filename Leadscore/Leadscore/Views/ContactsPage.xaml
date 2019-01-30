@@ -5,6 +5,7 @@
              xmlns:extensions="clr-namespace:Leadscore.Extensions"
              x:Class="Leadscore.Views.ContactsPage"
              NavigationPage.HasBackButton="False"
+             BackgroundColor="{x:Static extensions:ColorExtensions.BackgroundColorLight}"
              Title="Contacts">
     
   <ContentPage.Resources>
@@ -56,8 +57,7 @@
                            Font="Medium"
                            TextColor="{x:Static extensions:ColorExtensions.TextColorDarkPrimary}" />
                   </StackLayout>
-                  <Label Text="{Binding Birthday, Converter={StaticResource strConverter}}" 
-                         HorizontalOptions="EndAndExpand"
+                  <Label HorizontalOptions="EndAndExpand"
                          VerticalOptions="Center"
                          VerticalTextAlignment="Center"
                          Font="Small"

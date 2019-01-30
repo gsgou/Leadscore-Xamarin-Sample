@@ -13,8 +13,6 @@
                    TargetType="Entry">
               <Setter Property="Margin"
                       Value="16,8,16,0" />
-              <Setter Property="BackgroundColor"
-                      Value="{x:Static extensions:ColorExtensions.BackgroundColorLight}" />
               <Setter Property="TextColor"
                       Value="{x:Static extensions:ColorExtensions.TextColorDarkPrimary}" />  
             </Style>
@@ -25,8 +23,6 @@
                       Value="16,8,16,0" />
               <Setter Property="FontSize"
                       Value="Medium" />
-              <Setter Property="BorderColor"
-                      Value="{x:Static extensions:ColorExtensions.BackgroundColorLight}" />
               <Setter Property="TextColor"
                       Value="{x:Static extensions:ColorExtensions.TextColorLightPrimary}" />  
             </Style>
