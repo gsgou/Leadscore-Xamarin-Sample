@@ -8,11 +8,11 @@ namespace Leadscore.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var str = (String)value;
-            return String.IsNullOrWhiteSpace(str) ? "N/A" : str;
+            string str = (string)value;
+            return string.IsNullOrWhiteSpace(str) ? "N/A" : str;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-            throw new NotImplementedException(string.Format("{0} is one-way", nameof(EmptyStringConverter)));
+            throw new NotImplementedException($"{nameof(EmptyStringConverter)} is one-way");
     }
 }

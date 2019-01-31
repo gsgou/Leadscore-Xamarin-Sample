@@ -57,7 +57,7 @@ namespace Leadscore.ViewModels
                         ));
 
             canLoginObservable
-                .Do(_ => Debug.WriteLine(string.Format("{0},{1},{2}", Email, Password, CanLogin.ToString())))
+                .Do(_ => Debug.WriteLine($"{Email},{Password},{CanLogin.ToString()}"))
                 .ToPropertyEx(this, x => x.CanLogin);
 
             this.loginCommand = ReactiveCommand.CreateFromObservable(

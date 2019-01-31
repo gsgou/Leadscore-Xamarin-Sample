@@ -69,11 +69,11 @@ namespace Leadscore.Helpers
 
         static void HandleException<TException>(string methodName, TException ex)
         {
-            string errorMessage = string.Format("{0} in {1}():\r\n{2}\r\n",
-                ex.GetType().Name,
-                methodName,
-                (ex as Exception).Message);
-            Debug.Write(errorMessage);
+            var exception = ex as Exception;
+            Debug.Write(
+                $"{ex.GetType().Name} in {methodName}():\r\n" +
+                $"{exception?.Message}\r\n" + 
+                $"{exception?.StackTrace}\r\n");
         }
     }
 }
