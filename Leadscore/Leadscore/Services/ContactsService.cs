@@ -33,9 +33,9 @@ namespace Leadscore.Services
         public async Task<IEnumerable<Contact>> FindFilteredContact(string authToken)
         {
             var filters = new Filter[] {
-                    new Filter { Field = "contactType", Op = "eq", Value = "COMPANY" },
-                    new Filter { Field = "contactType", Op = "eq", Value = "PERSON" }
-                }.AsEnumerable();
+                new Filter { Field = "contactType", Op = "eq", Value = "COMPANY" },
+                new Filter { Field = "contactType", Op = "eq", Value = "PERSON" }
+            }.AsEnumerable();
 
             var request = new FindFilteredContactsRequest()
             {

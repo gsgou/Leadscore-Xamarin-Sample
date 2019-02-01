@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -12,17 +13,23 @@ namespace Leadscore.Helpers
 {
     public static class ApiHelpers
     {
+        static HttpStatusCode[] httpStatusCodesWorthRetrying = {
+            HttpStatusCode.RequestTimeout,      // 408
+            HttpStatusCode.InternalServerError, // 500
+            HttpStatusCode.BadGateway,          // 502
+            HttpStatusCode.ServiceUnavailable,  // 503
+            HttpStatusCode.GatewayTimeout       // 504
+        };
+
+        static Random jitterer = new Random();
+
         // Exponential back-off plus some jitter.
         // To overcome peaks of similar retries coming from many clients in case of partial outages,
         // a good workaround is to add a jitter strategy to the retry algorithm/policy.
         public static async Task<TResult> RetryPolicy<TResult>(Func<Task<TResult>> action)
         {
-            Random jitterer = new Random();
-
             return await Policy
-            .Handle<ApiException>(ex =>
-                ex.StatusCode != HttpStatusCode.NotFound &&
-                ex.StatusCode != HttpStatusCode.NotModified)
+            .Handle<ApiException>(ex => httpStatusCodesWorthRetrying.Contains(ex.StatusCode))
             .WaitAndRetryAsync
             (
                 retryCount: 3,
