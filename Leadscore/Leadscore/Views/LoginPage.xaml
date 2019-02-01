@@ -85,6 +85,7 @@
                 x:Name="Password"
                 Style="{StaticResource entryStyle}"
                 IsTextPredictionEnabled="false"
+                IsPassword="true"
                 Placeholder="Password"
                 Text="{Binding Password, Mode=OneWayToSource}">
                 <controls:EntryMoveNextControl.Effects>
