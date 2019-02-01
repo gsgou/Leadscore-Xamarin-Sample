@@ -35,8 +35,8 @@ namespace Leadscore.iOS.Effects
                 return;
             }
 
-            UIImage visibilityImage = UIImage.FromFile("ic_visibility");
-            UIImage visibilityOffImage = UIImage.FromFile("ic_visibility_off");
+            UIImage visibilityImage = UIImage.FromBundle("ic_visibility");
+            UIImage visibilityOffImage = UIImage.FromBundle("ic_visibility_off");
 
             UIButton buttonRect = UIButton.FromType(UIButtonType.Custom);
             buttonRect.SetImage(updatedEntry.SecureTextEntry ? visibilityOffImage.WithAlpha((nfloat)0.54) : visibilityImage.WithAlpha((nfloat)0.54), UIControlState.Normal);

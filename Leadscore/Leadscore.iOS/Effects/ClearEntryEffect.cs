@@ -38,7 +38,7 @@ namespace Leadscore.iOS.Effects
 
             updatedEntry.ClearButtonMode = UITextFieldViewMode.Never;
 
-            UIImage clearImage = UIImage.FromFile("ic_clear");
+            UIImage clearImage = UIImage.FromBundle("ic_clear");
 
             UIButton buttonRect = UIButton.FromType(UIButtonType.Custom);
             buttonRect.SetImage(clearImage.WithAlpha((nfloat)0.54), UIControlState.Normal);
