@@ -22,7 +22,8 @@ namespace Leadscore.ViewModels
 
         public ObservableRangeCollection<ContactViewModel> Contacts { get; } = new ObservableRangeCollection<ContactViewModel>();
 
-        [Reactive] public bool IsRefreshing { get; set; } = false;
+        [Reactive]
+        public bool IsRefreshing { get; set; } = false;
 
         readonly ReactiveCommand<Unit, Unit> logoutCommand;
         public ReactiveCommand<Unit, Unit> LogoutCommand => this.logoutCommand;
