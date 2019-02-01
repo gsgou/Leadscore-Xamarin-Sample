@@ -9,7 +9,9 @@ using Xamarin.Forms.Platform.Android;
 using Leadscore.Droid.Helpers;
 
 [assembly: ResolutionGroupName("Leadscore.Effects")]
-[assembly: ExportEffect(typeof(Leadscore.Droid.Effects.ClearEntryEffect), nameof(Leadscore.Effects.ClearEntryEffect))]
+[assembly: ExportEffect(
+    typeof(Leadscore.Droid.Effects.ClearEntryEffect), nameof(Leadscore.Effects.ClearEntryEffect))]
+
 namespace Leadscore.Droid.Effects
 {
     public class ClearEntryEffect : PlatformEffect

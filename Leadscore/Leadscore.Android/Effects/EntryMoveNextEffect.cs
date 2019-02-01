@@ -2,7 +2,9 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportEffect(typeof(Leadscore.Droid.Effects.EntryMoveNextEffect), nameof(Leadscore.Effects.EntryMoveNextEffect))]
+[assembly: ExportEffect(
+    typeof(Leadscore.Droid.Effects.EntryMoveNextEffect), nameof(Leadscore.Effects.EntryMoveNextEffect))]
+
 namespace Leadscore.Droid.Effects
 {
     public class EntryMoveNextEffect : PlatformEffect

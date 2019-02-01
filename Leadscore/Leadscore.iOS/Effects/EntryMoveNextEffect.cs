@@ -5,7 +5,9 @@ using Leadscore.Controls;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportEffect(typeof(Leadscore.iOS.Effects.EntryMoveNextEffect), nameof(Leadscore.Effects.EntryMoveNextEffect))]
+[assembly: ExportEffect(
+    typeof(Leadscore.iOS.Effects.EntryMoveNextEffect), nameof(Leadscore.Effects.EntryMoveNextEffect))]
+
 namespace Leadscore.iOS.Effects
 {
     public class EntryMoveNextEffect : PlatformEffect

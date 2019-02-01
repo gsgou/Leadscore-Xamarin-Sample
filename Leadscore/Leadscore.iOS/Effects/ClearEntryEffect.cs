@@ -7,7 +7,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ResolutionGroupName("Leadscore.Effects")]
-[assembly: ExportEffect(typeof(Leadscore.iOS.Effects.ClearEntryEffect), nameof(Leadscore.Effects.ClearEntryEffect))]
+[assembly: ExportEffect(
+    typeof(Leadscore.iOS.Effects.ClearEntryEffect), nameof(Leadscore.Effects.ClearEntryEffect))]
+
 namespace Leadscore.iOS.Effects
 {
     public class ClearEntryEffect : PlatformEffect

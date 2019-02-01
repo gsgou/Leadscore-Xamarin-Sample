@@ -9,7 +9,9 @@ using Xamarin.Forms.Platform.Android;
 
 using Leadscore.Droid.Helpers;
 
-[assembly: ExportEffect(typeof(Leadscore.Droid.Effects.ShowHidePassEffect), nameof(Leadscore.Effects.ShowHidePassEffect))]
+[assembly: ExportEffect(
+    typeof(Leadscore.Droid.Effects.ShowHidePassEffect), nameof(Leadscore.Effects.ShowHidePassEffect))]
+
 namespace Leadscore.Droid.Effects
 {
     public class ShowHidePassEffect : PlatformEffect

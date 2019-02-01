@@ -6,7 +6,9 @@ using Leadscore.iOS.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
-[assembly: ExportEffect(typeof(Leadscore.iOS.Effects.ShowHidePassEffect), nameof(Leadscore.Effects.ShowHidePassEffect))]
+[assembly: ExportEffect(
+    typeof(Leadscore.iOS.Effects.ShowHidePassEffect), nameof(Leadscore.Effects.ShowHidePassEffect))]
+
 namespace Leadscore.iOS.Effects
 {
     public class ShowHidePassEffect : PlatformEffect
