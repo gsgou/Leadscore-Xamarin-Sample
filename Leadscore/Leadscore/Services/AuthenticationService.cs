@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+using Splat;
+
 using Leadscore.Helpers;
 using Leadscore.Interfaces;
+using Leadscore.Interfaces.Api;
 using Leadscore.Models;
 using Refit;
 
@@ -12,21 +14,11 @@ namespace Leadscore.Services
 {
     public class AuthenticationService
     {
-        readonly HttpClient _httpClient;
-        readonly HttpClientHandler _httpClientHandler;
-        readonly IAuthentication _restService;
-
-        const string ApiBaseUrl = "https://internal-api-staging-lb.interact.io/v2";
+        readonly IAuthenticationApi _restService;
 
         public AuthenticationService()
         {
-            _httpClientHandler = new HttpClientHandler();
-            _httpClient = new HttpClient(_httpClientHandler)
-            {
-                BaseAddress = new Uri(ApiBaseUrl)
-            };
-
-            _restService = RestService.For<IAuthentication>(_httpClient);
+            _restService = Locator.Current.GetService<IRestPoolService>().AuthenticationApi;
         }
 
         public async Task<string> Login(Dictionary<string, object> request)

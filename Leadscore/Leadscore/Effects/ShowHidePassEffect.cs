@@ -6,7 +6,7 @@ namespace Leadscore.Effects
     public class ShowHidePassEffect : RoutingEffect
     {
         public ShowHidePassEffect()
-            : base($"{nameof(Effects)}.{nameof(ShowHidePassEffect)}")
+            : base(typeof(ShowHidePassEffect).FullName)
         {
 
         }

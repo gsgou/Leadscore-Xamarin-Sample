@@ -1,9 +1,14 @@
-﻿using Leadscore.ViewModels;
+﻿using Splat;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamvvm;
 
+using Leadscore.Interfaces;
+using Leadscore.Services;
+using Leadscore.ViewModels;
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace Leadscore
 {
     public partial class App : Application
@@ -12,8 +17,7 @@ namespace Leadscore
         {
             InitializeComponent();
 
-            var factory = new XamvvmFormsRxUIFactory(this);
-            XamvvmCore.SetCurrentFactory(factory);
+            RegisterServicesAndProviders();
 
             MainPage = new NavigationPage(this.GetPageFromCache<LoginPageViewModel>() as Page);
         }
@@ -31,6 +35,15 @@ namespace Leadscore
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        void RegisterServicesAndProviders()
+        {
+            Locator.CurrentMutable.RegisterConstant(
+                new RestPoolService(), typeof(IRestPoolService));
+
+            var factory = new XamvvmFormsRxUIFactory(this);
+            XamvvmCore.SetCurrentFactory(factory);
         }
     }
 }

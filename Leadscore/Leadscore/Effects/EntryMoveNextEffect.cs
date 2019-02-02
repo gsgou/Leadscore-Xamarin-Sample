@@ -6,7 +6,7 @@ namespace Leadscore.Effects
     public class EntryMoveNextEffect : RoutingEffect
     {
         public EntryMoveNextEffect()
-            : base($"{nameof(Effects)}.{nameof(EntryMoveNextEffect)}")
+            : base(typeof(EntryMoveNextEffect).FullName)
         {
 
         }

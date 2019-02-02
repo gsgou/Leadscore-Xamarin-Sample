@@ -2,9 +2,9 @@
 using Leadscore.Models;
 using Refit;
 
-namespace Leadscore.Interfaces
+namespace Leadscore.Interfaces.Api
 {
-    public interface IContacts
+    public interface IContactsApi
     { 
         [Headers("Content-Type: application/json", "Accept: application/json")]
         [Post("/contacts/filter?offset=0&limit=100")]

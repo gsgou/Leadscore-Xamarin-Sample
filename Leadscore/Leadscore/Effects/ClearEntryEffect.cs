@@ -6,7 +6,7 @@ namespace Leadscore.Effects
     public class ClearEntryEffect : RoutingEffect
     {
         public ClearEntryEffect()
-            : base($"{nameof(Effects)}.{nameof(ClearEntryEffect)}")
+            : base(typeof(ClearEntryEffect).FullName)
         {
 
         }

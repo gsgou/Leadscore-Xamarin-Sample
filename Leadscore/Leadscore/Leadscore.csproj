@@ -41,6 +41,7 @@
     <Folder Include="Models\Contacts\" />
     <Folder Include="Helpers\" />
     <Folder Include="Converters\" />
+    <Folder Include="Interfaces\Api\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\logo_with_brand_name.png" />    

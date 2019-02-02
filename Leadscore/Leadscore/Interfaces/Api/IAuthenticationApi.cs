@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using Leadscore.Models;
 using Refit;
 
-namespace Leadscore.Interfaces
+namespace Leadscore.Interfaces.Api
 {
     [Headers("Content-Type: application/json", "Accept: application/json")]
-    public interface IAuthentication
+    public interface IAuthenticationApi
     {
         [Post("/login")]
         Task<LoginResult> Login([Body(BodySerializationMethod.Json)] Dictionary<string, object> request);
